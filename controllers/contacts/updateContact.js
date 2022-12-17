@@ -3,21 +3,16 @@ const { HttpError } = require("../../helpers")
 const {addSchema} = require("../../schemas/contacts")
 
 const updateContact = async (req, res, next) => {
-  try {
-    const { error } = addSchema.validate(req.body);
-    if (error) {
-      throw HttpError(400, error.message)
-    }
-    const { contactId } = req.params;
-    const result = await contacts.updateContact(contactId, req.body);
-    if (!result) {
-      throw HttpError(404, "Not found");
-    }
-    res.json(result);
+  const { error } = addSchema.validate(req.body);
+  if (error) {
+    throw HttpError(400, error.message)
   }
-  catch (error) {
-    next(error);
+  const { contactId } = req.params;
+  const result = await contacts.updateContact(contactId, req.body);
+  if (!result) {
+    throw HttpError(404, "Not found");
   }
+  res.json(result);
 }
 
 module.exports = updateContact;
