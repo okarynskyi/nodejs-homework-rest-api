@@ -3,5 +3,5 @@ const register = require("./register")
 
 module.exports = {
     register,
-    login,
+    // login,
 }
