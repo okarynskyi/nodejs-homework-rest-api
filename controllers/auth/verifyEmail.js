@@ -2,7 +2,7 @@ const {User} = require("../../models/user")
 
 const {HttpError} = require("../../helpers")
 
-const verify = async(req, res)=> {
+const verifyEmail = async(req, res)=> {
     const {verificationToken} = req.params;
     const user = await User.findOne({verificationToken});
     if(!user){
@@ -15,4 +15,4 @@ const verify = async(req, res)=> {
     })
 }
 
-module.exports = verify;
+module.exports = verifyEmail;
